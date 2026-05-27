@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: "Inter", system-ui, sans-serif;
+  --font-grotesk: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #0A0B0D;
+  color: #F0F4FF;
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Dot grid background helper */
+.dot-grid {
+  background-image: radial-gradient(circle, #1E2433 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Subtle line grid */
+.line-grid {
+  background-image:
+    linear-gradient(rgba(30,144,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30,144,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Orange gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, #1E90FF 0%, #FF6B1A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glowing card border */
+.card-glow {
+  border: 1px solid #1E2433;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card-glow:hover {
+  border-color: rgba(30,144,255,0.3);
+  box-shadow: 0 0 24px rgba(30,144,255,0.06);
+}
+
+/* Input focus */
+.input-field {
+  background: #111318;
+  border: 1px solid #1E2433;
+  color: #F0F4FF;
+  border-radius: 8px;
+  padding: 12px 16px;
+  width: 100%;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.input-field:focus {
+  border-color: #1E90FF;
+  box-shadow: 0 0 0 3px rgba(30,144,255,0.12);
+}
+.input-field::placeholder { color: #8892A4; }
