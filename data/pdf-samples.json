@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "Structural Steel Frame",
+    "subtitle": "Full structure plan with beams and columns",
+    "category": "STRUCTURE",
+    "file": "/samples/structure/STRUCTURE_PLAN.pdf",
+    "active": true
+  },
+  {
+    "id": 2,
+    "title": "Beam Details",
+    "subtitle": "W-section beam shop drawings",
+    "category": "STRUCTURE",
+    "file": "/samples/structure/BEAMS.pdf",
+    "active": true
+  },
+  {
+    "id": 3,
+    "title": "Bracing Details",
+    "subtitle": "Lateral bracing connection details",
+    "category": "STRUCTURE",
+    "file": "/samples/structure/BRACINGS.pdf",
+    "active": true
+  },
+  {
+    "id": 4,
+    "title": "Frame Package",
+    "subtitle": "Complete frame erection drawings",
+    "category": "STRUCTURE",
+    "file": "/samples/structure/FRAME.pdf",
+    "active": true
+  },
+  {
+    "id": 5,
+    "title": "Stair Erection Plan",
+    "subtitle": "Stair assembly and erection sequence",
+    "category": "MISC",
+    "file": "/samples/misc/STAIR ERECTION.pdf",
+    "active": true
+  },
+  {
+    "id": 6,
+    "title": "Stair Plan",
+    "subtitle": "Stair plan view with dimensions",
+    "category": "MISC",
+    "file": "/samples/misc/STAIR PLAN.pdf",
+    "active": true
+  },
+  {
+    "id": 7,
+    "title": "Stair Section",
+    "subtitle": "Stair section detail drawings",
+    "category": "MISC",
+    "file": "/samples/misc/STAIR SECTION.pdf",
+    "active": true
+  },
+  {
+    "id": 8,
+    "title": "Stringers Detail",
+    "subtitle": "Stair stringer shop drawings",
+    "category": "MISC",
+    "file": "/samples/misc/STRINGERS.pdf",
+    "active": true
+  },
+  {
+    "id": 9,
+    "title": "Guardrail Detail",
+    "subtitle": "Pipe guardrail and post details",
+    "category": "MISC",
+    "file": "/samples/misc/GUARDRAIL.pdf",
+    "active": true
+  },
+  {
+    "id": 10,
+    "title": "Isometric View",
+    "subtitle": "3D isometric model screenshot",
+    "category": "MISC",
+    "file": "/samples/misc/ISOMETRIC_VIEW.pdf",
+    "active": true
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "quote": "UStruct delivered our 200,000 sq ft warehouse steel package in under 72 hours. The accuracy was flawless — not a single RFI from our fabricator. This is now our go-to detailing team.",
+    "author": "David Chen, PE",
+    "company": "Apex Structural Engineers",
+    "city": "Chicago, IL",
+    "active": true
+  },
+  {
+    "id": 2,
+    "quote": "We switched to UStruct after being burned by another offshore firm. Night and day difference. They understand AISC, they communicate in real time, and their Tekla models are exceptional.",
+    "author": "Sarah Martinez",
+    "company": "Ironworks Fabrication Co.",
+    "city": "Houston, TX",
+    "active": true
+  },
+  {
+    "id": 3,
+    "quote": "Three projects in, and I won't use anyone else. The turnaround has changed how we bid work. We can take more jobs knowing detailing won't be the bottleneck.",
+    "author": "Mike Thompson",
+    "company": "Thompson Steel & Construction",
+    "city": "Atlanta, GA",
+    "active": true
+  }
+]

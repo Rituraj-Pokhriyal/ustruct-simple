@@ -1,34 +1,26 @@
+import Image from "next/image";
 import { COMPANY } from "@/lib/constants";
 
 export function Footer() {
   return (
-    <footer
-      className="border-t border-border"
-      style={{ background: "#080909" }}
-    >
+    <footer className="border-t border-border" style={{ background: "#080909" }}>
       <div className="max-w-7xl mx-auto px-6 py-14">
         <div className="grid md:grid-cols-3 gap-10 mb-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <span
-                className="w-7 h-7 rounded flex items-center justify-center text-xs font-bold font-mono"
-                style={{ background: "#1E90FF", color: "#0A0B0D" }}
-              >
-                U
-              </span>
-              <span className="font-display font-bold text-text-primary">{COMPANY.name}</span>
+            <div className="mb-4">
+              <Image src="/logo.png" alt={COMPANY.name} width={120} height={40} style={{ height: 40, width: "auto", objectFit: "contain" }} />
             </div>
-            <p className="text-sm text-text-muted leading-relaxed max-w-xs">
-              {COMPANY.tagline} Tekla-certified steel detailing for the USA market — shipped in 48 hours.
+            <p className="text-base text-text-muted leading-relaxed max-w-xs">
+              Professional steel detailing services — precision shop drawings, GA drawings, and BIM coordination delivered by industry experts.
             </p>
           </div>
 
           {/* Services */}
           <div>
-            <p className="text-xs font-mono text-text-muted uppercase tracking-widest mb-4">Services</p>
-            <ul className="space-y-2 text-sm text-text-muted">
-              {["Structural Steel", "Shop Drawings", "GA Drawings", "Erection Drawings", "Tekla 3D Modeling", "BIM Coordination"].map(s => (
+            <p className="text-sm font-bold text-text-muted uppercase tracking-widest mb-4">Services</p>
+            <ul className="space-y-2 text-base text-text-muted">
+              {["Structural Steel", "Miscellaneous Steel", "Shop Drawings", "GA Drawings", "Tekla 3D Modeling", "BIM Coordination", "CNC Detailing"].map(s => (
                 <li key={s} className="hover:text-text-primary transition-colors cursor-pointer">{s}</li>
               ))}
             </ul>
@@ -36,25 +28,26 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="text-xs font-mono text-text-muted uppercase tracking-widest mb-4">Contact</p>
-            <div className="space-y-3 text-sm text-text-muted">
+            <p className="text-sm font-bold text-text-muted uppercase tracking-widest mb-4">Contact</p>
+            <div className="space-y-3 text-base text-text-muted">
               <a href={`mailto:${COMPANY.email}`} className="block hover:text-steel-blue transition-colors">
                 {COMPANY.email}
               </a>
               <a href={COMPANY.whatsappLink} target="_blank" rel="noopener noreferrer" className="block hover:text-steel-blue transition-colors">
                 WhatsApp: {COMPANY.whatsapp}
               </a>
-              <p>{COMPANY.location}</p>
+              <p>Delhi, India</p>
+              <p className="text-sm">Serving USA Clients &mdash; 24/7 Support</p>
             </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
+        {/* Bottom */}
         <div className="border-t border-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs font-mono text-text-muted">
-            © {new Date().getFullYear()} {COMPANY.fullName}. All rights reserved.
+          <p className="text-sm text-text-muted">
+            &copy; {new Date().getFullYear()} {COMPANY.fullName}. All rights reserved.
           </p>
-          <p className="text-xs font-mono text-text-muted">
+          <p className="text-sm text-text-muted">
             Designed in India. Built for America.
           </p>
         </div>
@@ -65,7 +58,7 @@ export function Footer() {
         href={COMPANY.whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 w-13 h-13 rounded-full flex items-center justify-center text-white shadow-lg z-40 transition-transform hover:scale-110"
+        className="fixed bottom-6 right-6 rounded-full flex items-center justify-center text-white shadow-lg z-40 transition-transform hover:scale-110"
         style={{ background: "#25D366", width: 52, height: 52 }}
         title="Chat on WhatsApp"
       >

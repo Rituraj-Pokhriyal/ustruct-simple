@@ -6,7 +6,7 @@ export const COMPANY = {
   email: "info@ustructdetailing.com",
   whatsapp: "+91 98765 43210",
   whatsappLink: "https://wa.me/919876543210",
-  location: "Pune, India · Serving USA Market",
+  location: "Delhi, India · Serving USA Market",
   linkedin: "https://linkedin.com/company/ustruct",
 };
 
@@ -27,7 +27,7 @@ export const SERVICES = [
   },
   {
     id: 2,
-    title: "Miscellaneous Steel",
+    title: "Miscellaneous Steel Detailing",
     slug: "misc-steel",
     icon: "MSC",
     description: "Stairs, handrails, ladders, catwalks, and architectural steel elements detailed to exact specifications.",
@@ -123,13 +123,55 @@ export const SERVICES = [
     ],
     category: "BIM",
   },
+  {
+    id: 9,
+    title: "Reinforcement Details",
+    slug: "reinforcement-details",
+    icon: "RFD",
+    description: "Rebar detailing for concrete elements integrated with structural steel — precise bar bending schedules and placement drawings.",
+    bullets: [
+      "Bar bending schedules (BBS)",
+      "Slab, beam, and column rebar layouts",
+      "Integration with steel connection zones",
+      "ACI 318 compliant detailing",
+    ],
+    category: "STRUCTURAL",
+  },
+  {
+    id: 10,
+    title: "Steel Fabrication Details",
+    slug: "fabrication-details",
+    icon: "FAB",
+    description: "Complete fabrication packages including cutting lists, weld maps, and material specifications ready for the shop floor.",
+    bullets: [
+      "Cutting and material lists",
+      "Weld map and procedure references",
+      "Surface preparation and coating notes",
+      "Assembly sequence diagrams",
+    ],
+    category: "DRAWINGS",
+  },
+  {
+    id: 11,
+    title: "CNC Detailing",
+    slug: "cnc-detailing",
+    icon: "CNC",
+    description: "Machine-ready DSTV/NC files for CNC plasma, laser, and drill lines — zero manual input at the machine.",
+    bullets: [
+      "DSTV/NC file generation from Tekla",
+      "Plasma, laser, and drill-line compatible",
+      "Part verification before export",
+      "Supports all major CNC machine formats",
+    ],
+    category: "BIM",
+  },
 ];
 
 export const STATS = [
-  { value: "98%",  label: "Accuracy Rate",      description: "Zero rework guarantee" },
-  { value: "48hr", label: "Turnaround",          description: "Standard project delivery" },
-  { value: "500+", label: "Projects Completed",  description: "Across USA & Canada" },
-  { value: "15+",  label: "Years Experience",    description: "Combined team expertise" },
+  { value: "98%",   label: "Accuracy Rate",       description: "Zero rework guarantee" },
+  { value: "500+",  label: "Projects Completed",   description: "Across USA & Canada" },
+  { value: "2.5M+", label: "Sq Ft Detailed",       description: "Structural steel area" },
+  { value: "15+",   label: "Years Experience",      description: "Combined team expertise" },
 ];
 
 export const PROCESS_STEPS = [
@@ -156,16 +198,11 @@ export const PROCESS_STEPS = [
   {
     number: "05",
     title: "Delivery",
-    description: "Drawings in DXF, DWG, PDF, and Tekla native formats. Revisions turned around in 24 hours. Your fabricator goes straight to work.",
+    description: "Drawings delivered in DXF, DWG, PDF, and Tekla native formats. Revisions turned around promptly. Your fabricator goes straight to work.",
   },
 ];
 
 export const WHY_US = [
-  {
-    title: "48-Hour Turnaround",
-    description: "Standard delivery in 48 hours. Rush jobs in 24. Your schedule never waits on detailing.",
-    accent: "#1E90FF",
-  },
   {
     title: "USA Timezone Sync",
     description: "Our team overlaps with EST and CST business hours. Real-time coordination, not next-day email.",
@@ -191,15 +228,21 @@ export const WHY_US = [
     description: "We use one tool and we use it perfectly. No AutoCAD workarounds — pure Tekla LOD 400.",
     accent: "#FF6B1A",
   },
+  {
+    title: "Round-the-Clock Support",
+    description: "We provide support across USA time zones — EST, CST, PST. Your project never waits.",
+    accent: "#1E90FF",
+  },
 ];
 
 export const TESTIMONIALS = [
   {
     id: 1,
-    quote: "UStruct delivered our 200,000 sq ft warehouse steel package in under 72 hours. The accuracy was flawless — not a single RFI from our fabricator. This is now our go-to detailing team.",
+    quote: "UStruct delivered our 200,000 sq ft warehouse steel package with flawless accuracy — not a single RFI from our fabricator. This is now our go-to detailing team.",
     author: "David Chen, PE",
     company: "Apex Structural Engineers",
     city: "Chicago, IL",
+    active: true,
   },
   {
     id: 2,
@@ -207,25 +250,28 @@ export const TESTIMONIALS = [
     author: "Sarah Martinez",
     company: "Ironworks Fabrication Co.",
     city: "Houston, TX",
+    active: true,
   },
   {
     id: 3,
-    quote: "Three projects in, and I won't use anyone else. The 48-hour turnaround has changed how we bid work. We can take more jobs knowing detailing won't be the bottleneck.",
+    quote: "Three projects in, and I won't use anyone else. The turnaround has changed how we bid work. We can take more jobs knowing detailing won't be the bottleneck.",
     author: "Mike Thompson",
     company: "Thompson Steel & Construction",
     city: "Atlanta, GA",
+    active: true,
   },
 ];
 
 export const PROJECTS = [
   {
     id: 1,
-    title: "Chicago Logistics Hub",
+    title: "Structural Steel Package",
     location: "Chicago, IL",
     type: "INDUSTRIAL",
     scope: "450,000 sq ft warehouse · Tekla 3D · 180 shop drawings",
-    imageUrl: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+    imageUrl: "/portfolio/structure/MODEL_SNAP.png",
     tags: ["Tekla Model", "Shop Drawings", "Erection Plan"],
+    active: true,
   },
   {
     id: 2,
@@ -233,17 +279,19 @@ export const PROJECTS = [
     location: "Houston, TX",
     type: "COMMERCIAL",
     scope: "18-story steel frame · Moment connections · BIM coordination",
-    imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
+    imageUrl: "/portfolio/structure/MODEL_SNAP1.png",
     tags: ["Moment Frame", "BIM", "AISC"],
+    active: true,
   },
   {
     id: 3,
-    title: "Atlanta Distribution Center",
+    title: "Miscellaneous Steel Package",
     location: "Atlanta, GA",
     type: "INDUSTRIAL",
-    scope: "Pre-engineered metal building · Misc steel · Mezzanine",
-    imageUrl: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&q=80",
-    tags: ["PEMB", "Mezzanine", "Misc Steel"],
+    scope: "Stairs · Handrails · Catwalks · Mezzanine",
+    imageUrl: "/portfolio/misc/MISC.png",
+    tags: ["Misc Steel", "Stair", "Handrail"],
+    active: true,
   },
   {
     id: 4,
@@ -251,17 +299,19 @@ export const PROJECTS = [
     location: "Dallas, TX",
     type: "MIXED-USE",
     scope: "Composite deck · Transfer beams · Connection details",
-    imageUrl: "https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=800&q=80",
+    imageUrl: "/portfolio/structure/MODEL_SNAP2.png",
     tags: ["Composite Deck", "Transfer Beams", "High-Rise"],
+    active: true,
   },
   {
     id: 5,
-    title: "Phoenix Cold Storage",
+    title: "Stair & Railing System",
     location: "Phoenix, AZ",
     type: "INDUSTRIAL",
-    scope: "Refrigerated warehouse · Drift analysis · 96 shop drawings",
-    imageUrl: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-    tags: ["Cold Storage", "Drift Design", "Shop Dwgs"],
+    scope: "Stair stringers · Guardrails · Grating floors",
+    imageUrl: "/portfolio/misc/MISC1.png",
+    tags: ["Stair", "Guardrail", "Misc Steel"],
+    active: true,
   },
   {
     id: 6,
@@ -269,7 +319,8 @@ export const PROJECTS = [
     location: "Seattle, WA",
     type: "COMMERCIAL",
     scope: "3-building campus · Seismic SFRS · Full BIM package",
-    imageUrl: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80",
+    imageUrl: "/portfolio/structure/MODEL_SNAP3.png",
     tags: ["Seismic", "SFRS", "BIM Package"],
+    active: true,
   },
 ];

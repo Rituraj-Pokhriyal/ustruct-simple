@@ -1,5 +1,6 @@
 import { PageBanner }    from "@/components/ui/PageBanner";
 import { Testimonials } from "@/components/sections/Testimonials";
+import testimonialsData from "../../../data/testimonials.json";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function TestimonialsPage() {
+  const testimonials = testimonialsData.filter((t) => t.active);
   return (
     <>
       <PageBanner
@@ -15,7 +17,7 @@ export default function TestimonialsPage() {
         title="Trusted by engineers across America."
         subtitle="Real feedback from structural engineers, fabricators and general contractors who rely on UStruct."
       />
-      <Testimonials />
+      <Testimonials testimonials={testimonials} />
     </>
   );
 }

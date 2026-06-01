@@ -19,17 +19,9 @@ export function WhyUs() {
               className="card-glow rounded-xl p-7"
               style={{ background: "#181C24" }}
             >
-              {/* Accent line */}
-              <div
-                className="h-0.5 w-10 rounded-full mb-5"
-                style={{ background: item.accent }}
-              />
-              <h3 className="font-display font-bold text-lg text-text-primary mb-3">
-                {item.title}
-              </h3>
-              <p className="text-text-muted text-sm leading-relaxed">
-                {item.description}
-              </p>
+              <div className="h-0.5 w-10 rounded-full mb-5" style={{ background: item.accent }} />
+              <h3 className="font-bold text-lg text-text-primary mb-3">{item.title}</h3>
+              <p className="text-text-muted text-base leading-relaxed">{item.description}</p>
             </motion.div>
           ))}
         </div>

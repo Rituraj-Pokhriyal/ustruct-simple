@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Structural Steel Package",
+    "location": "Chicago, IL",
+    "type": "INDUSTRIAL",
+    "scope": "450,000 sq ft warehouse · Tekla 3D · 180 shop drawings",
+    "imageUrl": "/portfolio/structure/MODEL_SNAP.png",
+    "tags": ["Tekla Model", "Shop Drawings", "Erection Plan"],
+    "active": true
+  },
+  {
+    "id": 2,
+    "title": "Houston Office Tower",
+    "location": "Houston, TX",
+    "type": "COMMERCIAL",
+    "scope": "18-story steel frame · Moment connections · BIM coordination",
+    "imageUrl": "/portfolio/structure/MODEL_SNAP1.png",
+    "tags": ["Moment Frame", "BIM", "AISC"],
+    "active": true
+  },
+  {
+    "id": 3,
+    "title": "Miscellaneous Steel Package",
+    "location": "Atlanta, GA",
+    "type": "INDUSTRIAL",
+    "scope": "Stairs · Handrails · Catwalks · Mezzanine",
+    "imageUrl": "/portfolio/misc/MISC.png",
+    "tags": ["Misc Steel", "Stair", "Handrail"],
+    "active": true
+  },
+  {
+    "id": 4,
+    "title": "Dallas Mixed-Use Tower",
+    "location": "Dallas, TX",
+    "type": "MIXED-USE",
+    "scope": "Composite deck · Transfer beams · Connection details",
+    "imageUrl": "/portfolio/structure/MODEL_SNAP2.png",
+    "tags": ["Composite Deck", "Transfer Beams", "High-Rise"],
+    "active": true
+  },
+  {
+    "id": 5,
+    "title": "Stair & Railing System",
+    "location": "Phoenix, AZ",
+    "type": "INDUSTRIAL",
+    "scope": "Stair stringers · Guardrails · Grating floors",
+    "imageUrl": "/portfolio/misc/MISC1.png",
+    "tags": ["Stair", "Guardrail", "Misc Steel"],
+    "active": true
+  },
+  {
+    "id": 6,
+    "title": "Seattle Office Campus",
+    "location": "Seattle, WA",
+    "type": "COMMERCIAL",
+    "scope": "3-building campus · Seismic SFRS · Full BIM package",
+    "imageUrl": "/portfolio/structure/MODEL_SNAP3.png",
+    "tags": ["Seismic", "SFRS", "BIM Package"],
+    "active": true
+  }
+]

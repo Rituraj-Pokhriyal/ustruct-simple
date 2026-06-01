@@ -19,13 +19,13 @@ export function Stats() {
               style={{ background: "#111318" }}
             >
               <span
-                className="font-display font-black leading-none mb-2"
+                className="font-bold leading-none mb-2"
                 style={{ fontSize: "clamp(2.2rem, 4vw, 3.5rem)", color: "#1E90FF" }}
               >
                 {stat.value}
               </span>
-              <span className="text-text-primary font-semibold text-sm mb-1">{stat.label}</span>
-              <span className="text-text-muted text-xs font-mono">{stat.description}</span>
+              <span className="text-text-primary font-bold text-base mb-1">{stat.label}</span>
+              <span className="text-text-muted text-sm">{stat.description}</span>
             </motion.div>
           ))}
         </div>

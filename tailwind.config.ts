@@ -18,9 +18,9 @@ const config: Config = {
         border:  "#1E2433",
       },
       fontFamily: {
-        sans:  ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-grotesk)", "system-ui", "sans-serif"],
-        mono:  ["var(--font-mono)", "monospace"],
+        sans:    ["Arial", "Helvetica", "sans-serif"],
+        display: ["Arial", "Helvetica", "sans-serif"],
+        mono:    ["'Courier New'", "Courier", "monospace"],
       },
     },
   },

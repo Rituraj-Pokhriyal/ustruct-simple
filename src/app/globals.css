@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-inter: "Inter", system-ui, sans-serif;
-  --font-grotesk: "Space Grotesk", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
-}
-
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
@@ -15,11 +9,12 @@ html { scroll-behavior: smooth; }
 body {
   background: #0A0B0D;
   color: #F0F4FF;
-  font-family: var(--font-inter);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Dot grid background helper */
+/* Dot grid background */
 .dot-grid {
   background-image: radial-gradient(circle, #1E2433 1px, transparent 1px);
   background-size: 28px 28px;
@@ -33,7 +28,7 @@ body {
   background-size: 60px 60px;
 }
 
-/* Orange gradient text */
+/* Orange → blue gradient text */
 .text-gradient {
   background: linear-gradient(135deg, #1E90FF 0%, #FF6B1A 100%);
   -webkit-background-clip: text;
@@ -51,7 +46,7 @@ body {
   box-shadow: 0 0 24px rgba(30,144,255,0.06);
 }
 
-/* Input focus */
+/* Form inputs */
 .input-field {
   background: #111318;
   border: 1px solid #1E2433;
@@ -59,7 +54,8 @@ body {
   border-radius: 8px;
   padding: 12px 16px;
   width: 100%;
-  font-size: 0.9rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
   transition: border-color 0.2s;
   outline: none;
 }
@@ -68,3 +64,11 @@ body {
   box-shadow: 0 0 0 3px rgba(30,144,255,0.12);
 }
 .input-field::placeholder { color: #8892A4; }
+
+/* Category / label text — minimum 13px */
+.label-tag {
+  font-size: 13px;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
