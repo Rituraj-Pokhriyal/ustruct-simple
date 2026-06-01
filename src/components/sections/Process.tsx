@@ -5,24 +5,8 @@ import { PROCESS_STEPS } from "@/lib/constants";
 
 export function Process() {
   return (
-    <section id="process" className="py-24" style={{ background: "#111318" }}>
+    <section className="py-20" style={{ background: "#111318" }}>
       <div className="max-w-5xl mx-auto px-6">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-16"
-        >
-          <p className="text-xs font-mono text-steel-blue uppercase tracking-widest mb-3">
-            — How It Works
-          </p>
-          <h2 className="font-display font-black text-4xl md:text-5xl text-text-primary leading-tight">
-            From drawings to delivery<br />in 5 steps.
-          </h2>
-        </motion.div>
-
         {/* Steps */}
         <div className="relative">
           {/* Vertical connector line */}

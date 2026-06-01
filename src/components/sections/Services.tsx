@@ -12,24 +12,8 @@ const CATEGORY_COLOR: Record<string, string> = {
 
 export function Services() {
   return (
-    <section id="services" className="py-24 line-grid">
+    <section className="py-20 line-grid">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-14"
-        >
-          <p className="text-xs font-mono text-steel-blue uppercase tracking-widest mb-3">
-            — What We Deliver
-          </p>
-          <h2 className="font-display font-black text-4xl md:text-5xl text-text-primary leading-tight">
-            Services
-          </h2>
-        </motion.div>
-
         {/* Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {SERVICES.map((service, i) => (

@@ -15,7 +15,7 @@ const schema = z.object({
 });
 type FormData = z.infer<typeof schema>;
 
-export function Contact() {
+export function Contact({ hideBanner }: { hideBanner?: boolean }) {
   const [submitted, setSubmitted] = useState(false);
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -28,7 +28,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24" style={{ background: "#111318" }}>
+    <section className="py-20" style={{ background: "#111318" }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left — copy */}
@@ -38,13 +38,17 @@ export function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
           >
-            <p className="text-xs font-mono text-steel-blue uppercase tracking-widest mb-4">
-              — Get in Touch
-            </p>
-            <h2 className="font-display font-black text-4xl md:text-5xl text-text-primary leading-tight mb-6">
-              Let&apos;s build something{" "}
-              <span className="text-gradient">together.</span>
-            </h2>
+            {!hideBanner && (
+              <>
+                <p className="text-xs font-mono text-steel-blue uppercase tracking-widest mb-4">
+                  — Get in Touch
+                </p>
+                <h2 className="font-display font-black text-4xl md:text-5xl text-text-primary leading-tight mb-6">
+                  Let&apos;s build something{" "}
+                  <span className="text-gradient">together.</span>
+                </h2>
+              </>
+            )}
             <p className="text-text-muted leading-relaxed mb-10">
               Send over your drawings and we&apos;ll scope the project same day.
               No obligation. Typical response within 4 business hours.

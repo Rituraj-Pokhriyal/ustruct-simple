@@ -12,24 +12,8 @@ const TYPE_COLOR: Record<string, string> = {
 
 export function Projects() {
   return (
-    <section id="projects" className="py-24 line-grid">
+    <section className="py-20 line-grid">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-14"
-        >
-          <p className="text-xs font-mono text-steel-blue uppercase tracking-widest mb-3">
-            — Portfolio
-          </p>
-          <h2 className="font-display font-black text-4xl md:text-5xl text-text-primary leading-tight">
-            Projects
-          </h2>
-        </motion.div>
-
         {/* Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {PROJECTS.map((project, i) => (

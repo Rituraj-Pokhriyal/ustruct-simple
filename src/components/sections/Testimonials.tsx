@@ -5,24 +5,8 @@ import { TESTIMONIALS } from "@/lib/constants";
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-24 dot-grid">
+    <section className="py-20 dot-grid">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-14 text-center"
-        >
-          <p className="text-xs font-mono text-steel-blue uppercase tracking-widest mb-3">
-            — Client Feedback
-          </p>
-          <h2 className="font-display font-black text-4xl md:text-5xl text-text-primary leading-tight">
-            Trusted by engineers<br />across America.
-          </h2>
-        </motion.div>
-
         {/* Cards */}
         <div className="grid md:grid-cols-3 gap-6">
           {TESTIMONIALS.map((t, i) => (

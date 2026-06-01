@@ -5,24 +5,8 @@ import { WHY_US } from "@/lib/constants";
 
 export function WhyUs() {
   return (
-    <section id="why-us" className="py-24" style={{ background: "#111318" }}>
+    <section className="py-20" style={{ background: "#111318" }}>
       <div className="max-w-7xl mx-auto px-6">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-14 text-center"
-        >
-          <p className="text-xs font-mono text-steel-blue uppercase tracking-widest mb-3">
-            — Why UStruct
-          </p>
-          <h2 className="font-display font-black text-4xl md:text-5xl text-text-primary leading-tight">
-            The competitive edge<br />your project deserves.
-          </h2>
-        </motion.div>
-
         {/* Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {WHY_US.map((item, i) => (

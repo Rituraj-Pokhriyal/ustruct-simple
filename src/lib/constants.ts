@@ -15,7 +15,7 @@ export const SERVICES = [
     id: 1,
     title: "Structural Steel Detailing",
     slug: "structural-steel",
-    icon: "⬛",
+    icon: "STR",
     description: "Comprehensive shop drawings for structural steel frames — beams, columns, braces, and connections to AISC standards.",
     bullets: [
       "W-section, HSS, and plate girder detailing",
@@ -29,7 +29,7 @@ export const SERVICES = [
     id: 2,
     title: "Miscellaneous Steel",
     slug: "misc-steel",
-    icon: "🪜",
+    icon: "MSC",
     description: "Stairs, handrails, ladders, catwalks, and architectural steel elements detailed to exact specifications.",
     bullets: [
       "Stair stringers, treads, and landings",
@@ -43,7 +43,7 @@ export const SERVICES = [
     id: 3,
     title: "Shop Drawings",
     slug: "shop-drawings",
-    icon: "📐",
+    icon: "SHD",
     description: "Fabrication-ready shop drawings that go straight to the shop floor — clear, precise, and contractor-approved.",
     bullets: [
       "Standard DXF and DWG formats",
@@ -57,7 +57,7 @@ export const SERVICES = [
     id: 4,
     title: "GA Drawings",
     slug: "ga-drawings",
-    icon: "🗺️",
+    icon: "GAD",
     description: "General arrangement drawings showing member layout, grids, and elevations for coordination and approval.",
     bullets: [
       "Plan, elevation, and section views",
@@ -71,7 +71,7 @@ export const SERVICES = [
     id: 5,
     title: "Erection Drawings",
     slug: "erection-drawings",
-    icon: "🏗️",
+    icon: "ERC",
     description: "Field erection plans with piece marks, sequence, and field connection details for efficient site erection.",
     bullets: [
       "Erection sequences and phasing",
@@ -85,7 +85,7 @@ export const SERVICES = [
     id: 6,
     title: "Connection Details",
     slug: "connection-details",
-    icon: "🔩",
+    icon: "CON",
     description: "Moment, shear, and axial connection designs detailed and drawn to resist specified loads per AISC.",
     bullets: [
       "Bolted and welded moment connections",
@@ -99,7 +99,7 @@ export const SERVICES = [
     id: 7,
     title: "Tekla 3D Modeling",
     slug: "tekla-modeling",
-    icon: "🧊",
+    icon: "TKL",
     description: "Full LOD 400 3D models in Tekla Structures — the industry standard for steel BIM.",
     bullets: [
       "Complete 3D steel model",
@@ -113,7 +113,7 @@ export const SERVICES = [
     id: 8,
     title: "BIM Coordination",
     slug: "bim-coordination",
-    icon: "🔗",
+    icon: "BIM",
     description: "Multi-discipline BIM coordination, clash detection, and IFC model federation for seamless project delivery.",
     bullets: [
       "IFC model export and import",
@@ -242,7 +242,7 @@ export const PROJECTS = [
     location: "Atlanta, GA",
     type: "INDUSTRIAL",
     scope: "Pre-engineered metal building · Misc steel · Mezzanine",
-    imageUrl: "https://images.unsplash.com/photo-1553697388-94e804e2f0f6?w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&q=80",
     tags: ["PEMB", "Mezzanine", "Misc Steel"],
   },
   {
