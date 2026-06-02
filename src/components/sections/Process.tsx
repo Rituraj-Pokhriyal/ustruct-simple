@@ -2,43 +2,16 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { PROCESS_STEPS } from "@/lib/constants";
 
-const STEP_ICONS: Record<string, React.ReactNode> = {
-  "01": (
-    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-      <rect x="4" y="4" width="24" height="28" rx="2"/>
-      <line x1="9" y1="12" x2="23" y2="12"/>
-      <line x1="9" y1="17" x2="23" y2="17"/>
-      <line x1="9" y1="22" x2="17" y2="22"/>
-      <polyline points="20,20 23,23 28,17"/>
-    </svg>
-  ),
-  "02": (
-    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-      <polygon points="16,2 30,10 30,22 16,30 2,22 2,10"/>
-      <line x1="16" y1="2" x2="16" y2="30"/>
-      <line x1="2" y1="10" x2="30" y2="10"/>
-      <line x1="2" y1="22" x2="30" y2="22"/>
-    </svg>
-  ),
-  "03": (
-    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-      <rect x="3" y="3" width="26" height="26" rx="2"/>
-      <line x1="3" y1="11" x2="29" y2="11"/>
-      <line x1="3" y1="21" x2="29" y2="21"/>
-      <line x1="12" y1="3" x2="12" y2="29"/>
-      <line x1="21" y1="3" x2="21" y2="29"/>
-    </svg>
-  ),
-  "04": (
-    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-      <path d="M4 26 L16 4 L28 26 Z"/>
-      <line x1="16" y1="4" x2="16" y2="18"/>
-      <circle cx="16" cy="22" r="1.5" fill="currentColor" stroke="none"/>
-    </svg>
-  ),
+const STEP_IMAGES: Record<string, string> = {
+  "01": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80", // reviewing documents/drawings
+  "02": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80", // engineers with 3D/BIM
+  "03": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",   // fabrication drawings/blueprints
+  "04": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80", // completed steel structure
 };
+
 
 export function Process() {
   const [active, setActive] = useState(0);
@@ -143,54 +116,43 @@ export function Process() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.35 }}
                 className="rounded-2xl overflow-hidden relative"
-                style={{
-                  background: "#181C24",
-                  border: "1px solid #1E90FF33",
-                  minHeight: 380,
-                }}
+                style={{ minHeight: 380, background: "#111318" }}
               >
-                {/* Blueprint grid bg */}
-                <div
-                  className="absolute inset-0 rounded-2xl"
-                  style={{
-                    backgroundImage: "linear-gradient(rgba(30,144,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(30,144,255,0.04) 1px, transparent 1px)",
-                    backgroundSize: "32px 32px",
-                  }}
+                {/* Photo */}
+                <Image
+                  src={STEP_IMAGES[PROCESS_STEPS[active].number]}
+                  alt={PROCESS_STEPS[active].title}
+                  fill
+                  className="object-cover"
+                  sizes="50vw"
                 />
 
-                <div className="relative p-10 flex flex-col h-full" style={{ minHeight: 380 }}>
+                {/* Gradient overlay — bottom for text legibility */}
+                <div
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(to top, rgba(10,11,13,0.92) 0%, rgba(10,11,13,0.3) 50%, rgba(10,11,13,0.1) 100%)" }}
+                />
+
+                {/* Content over image */}
+                <div className="absolute inset-0 flex flex-col justify-end p-8">
                   {/* Step badge */}
-                  <div className="flex items-center gap-3 mb-8">
-                    <span
-                      className="text-xs font-bold tracking-widest px-3 py-1 rounded-full"
-                      style={{ background: "rgba(30,144,255,0.15)", color: "#1E90FF", border: "1px solid rgba(30,144,255,0.3)" }}
-                    >
-                      STEP {PROCESS_STEPS[active].number}
-                    </span>
-                  </div>
-
-                  {/* Large icon */}
-                  <div
-                    className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6"
-                    style={{ background: "rgba(30,144,255,0.1)", color: "#1E90FF" }}
+                  <span
+                    className="self-start text-xs font-bold tracking-widest px-3 py-1.5 rounded-full mb-4"
+                    style={{ background: "rgba(30,144,255,0.85)", color: "#fff", backdropFilter: "blur(6px)" }}
                   >
-                    <div className="w-10 h-10">
-                      {STEP_ICONS[PROCESS_STEPS[active].number]}
-                    </div>
-                  </div>
+                    STEP {PROCESS_STEPS[active].number}
+                  </span>
 
-                  {/* Title */}
-                  <h3 className="font-bold text-2xl text-text-primary mb-4 leading-tight">
+                  <h3 className="font-bold text-xl text-white mb-2 leading-tight">
                     {PROCESS_STEPS[active].title}
                   </h3>
 
-                  {/* Description */}
-                  <p className="text-text-muted text-base leading-relaxed mb-6">
+                  <p className="text-sm leading-relaxed mb-5" style={{ color: "rgba(240,244,255,0.75)" }}>
                     {PROCESS_STEPS[active].description}
                   </p>
 
                   {/* Progress dots */}
-                  <div className="flex gap-2 mt-auto">
+                  <div className="flex gap-2">
                     {PROCESS_STEPS.map((_, i) => (
                       <button
                         key={i}
@@ -199,7 +161,7 @@ export function Process() {
                         style={{
                           width: i === active ? 24 : 8,
                           height: 8,
-                          background: i === active ? "#1E90FF" : "#1E2433",
+                          background: i === active ? "#1E90FF" : "rgba(255,255,255,0.3)",
                         }}
                       />
                     ))}
