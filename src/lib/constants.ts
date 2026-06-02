@@ -123,48 +123,6 @@ export const SERVICES = [
     ],
     category: "BIM",
   },
-  {
-    id: 9,
-    title: "Reinforcement Details",
-    slug: "reinforcement-details",
-    icon: "RFD",
-    description: "Rebar detailing for concrete elements integrated with structural steel — precise bar bending schedules and placement drawings.",
-    bullets: [
-      "Bar bending schedules (BBS)",
-      "Slab, beam, and column rebar layouts",
-      "Integration with steel connection zones",
-      "ACI 318 compliant detailing",
-    ],
-    category: "STRUCTURAL",
-  },
-  {
-    id: 10,
-    title: "Steel Fabrication Details",
-    slug: "fabrication-details",
-    icon: "FAB",
-    description: "Complete fabrication packages including cutting lists, weld maps, and material specifications ready for the shop floor.",
-    bullets: [
-      "Cutting and material lists",
-      "Weld map and procedure references",
-      "Surface preparation and coating notes",
-      "Assembly sequence diagrams",
-    ],
-    category: "DRAWINGS",
-  },
-  {
-    id: 11,
-    title: "CNC Detailing",
-    slug: "cnc-detailing",
-    icon: "CNC",
-    description: "Machine-ready DSTV/NC files for CNC plasma, laser, and drill lines — zero manual input at the machine.",
-    bullets: [
-      "DSTV/NC file generation from Tekla",
-      "Plasma, laser, and drill-line compatible",
-      "Part verification before export",
-      "Supports all major CNC machine formats",
-    ],
-    category: "BIM",
-  },
 ];
 
 export const STATS = [

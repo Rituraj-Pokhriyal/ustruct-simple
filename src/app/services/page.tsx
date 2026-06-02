@@ -13,7 +13,7 @@ export default function ServicesPage() {
       <PageBanner
         label="— What We Deliver"
         title="Our Services"
-        subtitle="Eight specialized deliverables — from structural detailing to full BIM coordination, all produced in Tekla Structures to LOD 400."
+        subtitle="Comprehensive steel detailing solutions powered by Tekla Structures and delivered by experienced professionals."
       />
       <Services />
     </>
