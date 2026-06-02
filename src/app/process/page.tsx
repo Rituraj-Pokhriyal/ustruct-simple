@@ -13,7 +13,7 @@ export default function ProcessPage() {
       <PageBanner
         label="— How It Works"
         title="From drawings to delivery in 5 steps."
-        subtitle="A repeatable, quality-controlled workflow that gets your fabricator on the floor fast."
+        subtitle="Streamlined workflow — from receiving your drawings to final delivery."
       />
       <Process />
     </>

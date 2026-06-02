@@ -135,28 +135,27 @@ export const STATS = [
 export const PROCESS_STEPS = [
   {
     number: "01",
-    title: "Brief & Scope",
-    description: "Send us your IFC, Revit, or contract drawings. We review scope, clarify questions, and confirm the deliverable list — all within 4 business hours.",
+    title: "Receive IFC / Contract Drawings",
+    description: "You send us your IFC, Revit, PDF, or CAD contract drawings. We review the full scope, raise any clarifications, and confirm the deliverable list — all within 4 business hours of receipt.",
+    detail: "Accepted formats: IFC, RVT, DWG, DXF, PDF. We work with whatever your EOR provides.",
   },
   {
     number: "02",
     title: "Tekla Modeling",
-    description: "Our Tekla-certified engineers build a precise 3D model — every beam, column, connection, and plate modeled to LOD 400.",
+    description: "Our Tekla-certified engineers build a precise, fully parametric 3D model in Tekla Structures — every beam, column, connection, and plate modeled to LOD 400 accuracy.",
+    detail: "Tekla Structures is the industry standard for steel BIM. Our models drive all downstream drawings automatically.",
   },
   {
     number: "03",
-    title: "Detailing",
-    description: "Connections designed and detailed per AISC 360-22. Shop drawings generated directly from the 3D model — no manual redraw, zero errors.",
+    title: "Fabrication Drawings",
+    description: "Shop drawings, GA drawings, erection plans, and connection details are generated directly from the 3D model. No manual redraw — every dimension, weld, and bolt is model-driven.",
+    detail: "Deliverables include shop drawings, GA drawings, erection drawings, and connection details per AISC 360-22.",
   },
   {
     number: "04",
-    title: "QA Review",
-    description: "A senior engineer reviews every drawing against the model and original specs. Our 60-point checklist catches everything before it leaves the office.",
-  },
-  {
-    number: "05",
-    title: "Delivery",
-    description: "Drawings delivered in DXF, DWG, PDF, and Tekla native formats. Revisions turned around promptly. Your fabricator goes straight to work.",
+    title: "Final Delivery",
+    description: "Your complete drawing package is delivered in DXF, DWG, PDF, and Tekla native formats. A senior engineer checks every sheet against the model before release. Revisions are handled promptly.",
+    detail: "Typical delivery: DXF + DWG for fabrication, PDF for approval, IFC + native Tekla for BIM coordination.",
   },
 ];
 
