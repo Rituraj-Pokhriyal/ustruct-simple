@@ -4,8 +4,8 @@ export const COMPANY = {
   tagline: "Built on Precision.",
   subtitle: "STEEL DETAILING",
   email: "info@ustructdetailing.com",
-  whatsapp: "+91 98765 43210",
-  whatsappLink: "https://wa.me/919876543210",
+  whatsapp: "+91 70117 92122",
+  whatsappLink: "https://wa.me/917011792122",
   location: "Delhi, India · Serving USA Market",
   linkedin: "https://linkedin.com/company/ustruct",
 };
