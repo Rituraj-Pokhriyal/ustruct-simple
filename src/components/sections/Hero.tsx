@@ -16,31 +16,18 @@ export function Hero() {
         }}
       />
 
-      {/* Faded logo watermark — same as Hostinger */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      {/* Faded logo watermark — large, fills the hero */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
         <Image
           src="/logo.png"
           alt=""
-          width={600}
-          height={200}
-          style={{ objectFit: "contain", opacity: 0.07 }}
+          width={1100}
+          height={380}
+          style={{ objectFit: "contain", opacity: 0.09, width: "85%", maxWidth: 1100, height: "auto" }}
           aria-hidden="true"
           priority
         />
       </div>
-
-      {/* Eyebrow */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="relative mb-6"
-      >
-        <span className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-border text-sm font-bold text-text-muted">
-          <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#FF6B1A" }} />
-          AISC CERTIFIED &nbsp;&middot;&nbsp; TEKLA SPECIALISTS &nbsp;&middot;&nbsp; PRECISION DETAILING
-        </span>
-      </motion.div>
 
       {/* Headline — restored to original large styling, new text */}
       <motion.h1
