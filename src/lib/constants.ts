@@ -126,10 +126,10 @@ export const SERVICES = [
 ];
 
 export const STATS = [
-  { value: "98%",   label: "Accuracy Rate",       description: "Zero rework guarantee" },
-  { value: "500+",  label: "Projects Completed",   description: "Across USA & Canada" },
-  { value: "2.5M+", label: "Sq Ft Detailed",       description: "Structural steel area" },
-  { value: "15+",   label: "Years Experience",      description: "Combined team expertise" },
+  { value: "100%",  label: "Accuracy Rate",       description: "Zero rework guarantee" },
+  { value: "100+",  label: "Projects Completed",  description: "Across USA & Canada" },
+  { value: "2.5M+", label: "Sq Ft Detailed",      description: "Structural steel area" },
+  { value: "10+",   label: "Years Experience",     description: "Combined team expertise" },
 ];
 
 export const PROCESS_STEPS = [
