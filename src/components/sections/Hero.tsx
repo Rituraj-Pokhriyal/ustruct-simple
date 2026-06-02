@@ -16,14 +16,14 @@ export function Hero() {
         }}
       />
 
-      {/* Faded logo watermark */}
+      {/* Faded logo watermark — same as Hostinger */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <Image
           src="/logo.png"
           alt=""
-          width={480}
-          height={160}
-          style={{ objectFit: "contain", opacity: 0.06 }}
+          width={600}
+          height={200}
+          style={{ objectFit: "contain", opacity: 0.07 }}
           aria-hidden="true"
           priority
         />
@@ -42,15 +42,17 @@ export function Hero() {
         </span>
       </motion.div>
 
-      {/* Headline */}
+      {/* Headline — restored to original large styling, new text */}
       <motion.h1
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-        className="relative font-bold leading-tight tracking-tight mb-6"
-        style={{ fontSize: "clamp(2.4rem, 5.5vw, 5rem)", fontFamily: "Arial, Helvetica, sans-serif" }}
+        className="relative font-black leading-tight tracking-tight mb-6"
+        style={{ fontSize: "clamp(2.8rem, 6.5vw, 6rem)" }}
       >
-        UStruct Steel Detailing Solutions
+        UStruct Steel Detailing{" "}
+        <br className="hidden sm:block" />
+        <span className="text-gradient">Solutions.</span>
       </motion.h1>
 
       {/* Sub */}
@@ -58,7 +60,7 @@ export function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.35 }}
-        className="relative text-text-muted text-lg leading-relaxed mb-4 max-w-2xl"
+        className="relative text-text-muted text-lg leading-relaxed mb-3 max-w-2xl"
       >
         High-Quality Steel Detailing Services Delivered by Industry Experts
       </motion.p>
@@ -69,7 +71,7 @@ export function Hero() {
         transition={{ duration: 0.5, delay: 0.45 }}
         className="relative text-text-muted text-base leading-relaxed mb-10 max-w-xl"
       >
-        Shop drawings, 3D models &amp; BIM coordination — Tekla-certified, AISC-compliant, zero rework.
+        Shop drawings, 3D models &amp; BIM coordination &mdash; Tekla-certified, AISC-compliant, zero rework.
       </motion.p>
 
       {/* CTAs */}
@@ -84,7 +86,7 @@ export function Hero() {
           className="px-8 py-3.5 rounded-xl text-base font-bold transition-all duration-200 hover:opacity-90 active:scale-95"
           style={{ background: "#FF6B1A", color: "#fff" }}
         >
-          Request a Quote &rarr;
+          Get a Quote &rarr;
         </Link>
         <Link
           href="/projects"
@@ -94,7 +96,7 @@ export function Hero() {
         </Link>
       </motion.div>
 
-      {/* Bottom info bar */}
+      {/* Bottom info */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
