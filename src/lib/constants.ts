@@ -6,7 +6,7 @@ export const COMPANY = {
   email: "info@ustructdetailing.com",
   whatsapp: "+91 70117 92122",
   whatsappLink: "https://wa.me/917011792122",
-  location: "Delhi, India · Serving USA Market",
+  location: "Delhi, India",
   linkedin: "https://linkedin.com/company/ustruct",
 };
 
@@ -127,7 +127,7 @@ export const SERVICES = [
 
 export const STATS = [
   { value: "100%",  label: "Accuracy Rate",       description: "Zero rework guarantee" },
-  { value: "100+",  label: "Projects Completed",  description: "Across USA & Canada" },
+  { value: "100+",  label: "Projects Completed",  description: "Globally delivered" },
   { value: "2.5M+", label: "Sq Ft Detailed",      description: "Structural steel area" },
   { value: "10+",   label: "Years Experience",     description: "Combined team expertise" },
 ];
@@ -162,7 +162,7 @@ export const PROCESS_STEPS = [
 export const WHY_US = [
   {
     title: "USA Timezone Sync",
-    description: "Our team overlaps with EST and CST business hours. Real-time coordination, not next-day email.",
+    description: "Our team syncs across time zones for real-time coordination — not next-day email.",
     accent: "#1E90FF",
   },
   {
@@ -187,7 +187,7 @@ export const WHY_US = [
   },
   {
     title: "Round-the-Clock Support",
-    description: "We provide support across USA time zones — EST, CST, PST. Your project never waits.",
+    description: "We provide support across time zones to make sure your project never waits.",
     accent: "#1E90FF",
   },
 ];

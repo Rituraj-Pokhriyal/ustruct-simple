@@ -37,7 +37,7 @@ export function Footer() {
                 WhatsApp: {COMPANY.whatsapp}
               </a>
               <p>Delhi, India</p>
-              <p className="text-sm">Serving USA Clients &mdash; 24/7 Support</p>
+              <p className="text-sm">Available across time zones</p>
             </div>
           </div>
         </div>
