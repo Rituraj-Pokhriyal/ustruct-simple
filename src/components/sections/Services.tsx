@@ -158,17 +158,13 @@ export function Services() {
             const flip = i % 2 === 1;
             return (
               <div key={service.id} className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-                {flip ? (
-                  <>
-                    <ServiceVisual service={service} flip={flip} />
-                    <ServiceContent service={service} flip={flip} />
-                  </>
-                ) : (
-                  <>
-                    <ServiceContent service={service} flip={flip} />
-                    <ServiceVisual service={service} flip={flip} />
-                  </>
-                )}
+                {/* Content always first on mobile; on desktop flip swaps order */}
+                <div className={flip ? "lg:order-2" : ""}>
+                  <ServiceContent service={service} flip={flip} />
+                </div>
+                <div className={flip ? "lg:order-1" : ""}>
+                  <ServiceVisual service={service} flip={flip} />
+                </div>
               </div>
             );
           })}
