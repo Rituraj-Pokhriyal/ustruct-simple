@@ -6,10 +6,10 @@ import Image from "next/image";
 import { PROCESS_STEPS } from "@/lib/constants";
 
 const STEP_IMAGES: Record<string, string> = {
-  "01": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80", // reviewing documents/drawings
-  "02": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80", // engineers with 3D/BIM
-  "03": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",   // fabrication drawings/blueprints
-  "04": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80", // completed steel structure
+  "01": "/images/process-1.jpg",
+  "02": "/images/service-7.jpg",
+  "03": "/images/service-3.jpg",
+  "04": "/images/process-4.jpg",
 };
 
 

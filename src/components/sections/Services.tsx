@@ -4,16 +4,16 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { SERVICES } from "@/lib/constants";
 
-/* ── Relevant Unsplash images per service ───────────────── */
+/* ── Local images per service ───────────────────────────── */
 const SERVICE_IMAGES: Record<number, string> = {
-  1: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80", // steel frame construction
-  2: "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=800&q=80", // steel staircase
-  3: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",   // engineering blueprints
-  4: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",   // architectural plans/GA
-  5: "https://images.unsplash.com/photo-1530098096418-5ab99a2b9c21?w=800&q=80", // crane/steel erection
-  6: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&q=80", // steel connections/bolts
-  7: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80", // engineers with 3D/BIM
-  8: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80", // modern building BIM
+  1: "/images/service-1.jpg",
+  2: "/images/service-2.jpg",
+  3: "/images/service-3.jpg",
+  4: "/images/service-4.jpg",
+  5: "/images/service-5.jpg",
+  6: "/images/service-6.jpg",
+  7: "/images/service-7.jpg",
+  8: "/images/service-8.jpg",
 };
 
 const CATEGORY_COLOR: Record<string, string> = {
@@ -56,6 +56,7 @@ function ServiceVisual({ service, flip }: { service: typeof SERVICES[0]; flip: b
         fill
         className="object-cover"
         sizes="(max-width: 1024px) 100vw, 50vw"
+        unoptimized={false}
       />
 
       {/* Dark overlay */}
