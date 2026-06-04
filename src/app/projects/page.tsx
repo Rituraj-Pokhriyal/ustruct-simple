@@ -1,21 +1,21 @@
 import { PageBanner } from "@/components/ui/PageBanner";
 import { Projects }   from "@/components/sections/Projects";
-import projectsData   from "../../../data/projects.json";
+import pdfData        from "../../../data/pdf-samples.json";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Projects | UStruct Steel Detailing",
-  description: "Portfolio of completed steel detailing projects across the USA.",
+  description: "View real completed work from UStruct — shop drawings, erection plans, stair details, structural frames and connection details.",
 };
 
 export default function ProjectsPage() {
-  const projects = projectsData.filter((p) => p.active);
+  const projects = pdfData.filter((p) => p.active);
   return (
     <>
       <PageBanner
-        label="— Portfolio"
+        label="— Our Work"
         title="Projects"
-        subtitle="A selection of completed work across industrial, commercial and mixed-use structures in the USA."
+        subtitle="Real deliverables from completed projects — click any drawing to preview or download."
       />
       <Projects projects={projects} />
     </>

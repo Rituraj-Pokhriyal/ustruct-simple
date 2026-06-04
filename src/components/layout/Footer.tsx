@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { COMPANY } from "@/lib/constants";
 
 export function Footer() {
@@ -21,7 +22,11 @@ export function Footer() {
             <p className="text-sm font-bold text-text-muted uppercase tracking-widest mb-4">Services</p>
             <ul className="space-y-2 text-base text-text-muted">
               {["Structural Steel", "Miscellaneous Steel", "Shop Drawings", "GA Drawings", "Tekla 3D Modeling", "BIM Coordination", "CNC Detailing"].map(s => (
-                <li key={s} className="hover:text-text-primary transition-colors cursor-pointer">{s}</li>
+                <li key={s}>
+                  <Link href="/services" className="hover:text-steel-blue transition-colors duration-200">
+                    {s}
+                  </Link>
+                </li>
               ))}
             </ul>
           </div>
