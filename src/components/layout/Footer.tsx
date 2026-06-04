@@ -48,7 +48,7 @@ export function Footer() {
             &copy; {new Date().getFullYear()} {COMPANY.fullName}. All rights reserved.
           </p>
           <p className="text-sm text-text-muted">
-            Designed in India. Built for America.
+            {COMPANY.tagline}
           </p>
         </div>
       </div>
