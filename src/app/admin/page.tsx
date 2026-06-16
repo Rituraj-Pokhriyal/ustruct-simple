@@ -42,25 +42,23 @@ interface Testimonial {
   active: boolean;
 }
 
-interface Project {
-  id: number;
-  title: string;
-  location: string;
-  type: string;
-  scope: string;
-  imageUrl: string;
-  tags: string[];
-  active: boolean;
-}
-
 interface PdfSample {
   id: number;
   title: string;
   subtitle: string;
   category: string;
+  group: string;
   file: string;
+  preview: string;
   active: boolean;
 }
+
+const GROUP_OPTIONS = [
+  { value: "structural-frame", label: "Structural Frame" },
+  { value: "stairs",           label: "Stairs" },
+  { value: "railings",         label: "Railings & Guardrails" },
+  { value: "3d-views",          label: "3D Views" },
+];
 
 /* ─── styles ────────────────────────────────────────────── */
 const s = {
@@ -269,82 +267,7 @@ function TestimonialsTab() {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   PORTFOLIO TAB
-═══════════════════════════════════════════════════════════ */
-function PortfolioTab() {
-  const [items,  setItems]  = useState<Project[]>([]);
-  const [saving, setSaving] = useState(false);
-  const [msg,    setMsg]    = useState("");
-
-  useEffect(() => { loadFile<Project[]>("projects", setItems); }, []);
-
-  const update = (id: number, field: keyof Project, val: string | boolean | string[]) =>
-    setItems(items.map(p => p.id === id ? { ...p, [field]: val } : p));
-
-  const save = () => {
-    setSaving(true);
-    saveFile("projects", items, (ok) => {
-      setSaving(false);
-      setMsg(ok ? "Saved! Site will update in ~2 minutes." : "Error — check GitHub token.");
-      setTimeout(() => setMsg(""), 5000);
-    });
-  };
-
-  return (
-    <div>
-      <h2 className={s.h2}>Portfolio Projects</h2>
-      {items.map(p => (
-        <div key={p.id} className={s.card} style={{ opacity: p.active ? 1 : 0.5 }}>
-          <div className="flex gap-2 items-center mb-3">
-            <input type="checkbox" checked={p.active} onChange={e => update(p.id, "active", e.target.checked)} className="w-4 h-4 accent-[#1E90FF]" />
-            <span className="text-xs text-[#8892A4]">{p.active ? "Visible" : "Hidden"}</span>
-          </div>
-          <div className={s.row}>
-            <div className="flex-1 min-w-[180px]">
-              <label className={s.label}>Title</label>
-              <input className={s.input} value={p.title} onChange={e => update(p.id, "title", e.target.value)} />
-            </div>
-            <div className="flex-1 min-w-[140px]">
-              <label className={s.label}>Location</label>
-              <input className={s.input} value={p.location} onChange={e => update(p.id, "location", e.target.value)} />
-            </div>
-            <div className="w-36">
-              <label className={s.label}>Type</label>
-              <select className={s.input} value={p.type} onChange={e => update(p.id, "type", e.target.value)}>
-                <option>INDUSTRIAL</option>
-                <option>COMMERCIAL</option>
-                <option>MIXED-USE</option>
-              </select>
-            </div>
-          </div>
-          <div className="mb-2">
-            <label className={s.label}>Scope</label>
-            <input className={s.input} value={p.scope} onChange={e => update(p.id, "scope", e.target.value)} />
-          </div>
-          <div className="mb-2">
-            <label className={s.label}>Image URL</label>
-            <input className={s.input} value={p.imageUrl} onChange={e => update(p.id, "imageUrl", e.target.value)} />
-          </div>
-          <div>
-            <label className={s.label}>Tags (comma-separated)</label>
-            <input
-              className={s.input}
-              value={p.tags.join(", ")}
-              onChange={e => update(p.id, "tags", e.target.value.split(",").map(t => t.trim()).filter(Boolean))}
-            />
-          </div>
-        </div>
-      ))}
-      <button onClick={save} disabled={saving} className={s.btnBlue}>
-        {saving ? "Saving…" : "Save All Projects"}
-      </button>
-      {msg && <p className="mt-3 text-sm text-green-400">{msg}</p>}
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════
-   PDF SAMPLES TAB
+   PROJECTS TAB (controls pdf-samples.json — the live /projects page)
 ═══════════════════════════════════════════════════════════ */
 function PdfTab() {
   const [items,  setItems]  = useState<PdfSample[]>([]);
@@ -367,7 +290,7 @@ function PdfTab() {
 
   return (
     <div>
-      <h2 className={s.h2}>PDF Samples</h2>
+      <h2 className={s.h2}>Projects</h2>
       {items.map(p => (
         <div key={p.id} className={s.card} style={{ opacity: p.active ? 1 : 0.5 }}>
           <div className="flex gap-2 items-center mb-3">
@@ -383,18 +306,22 @@ function PdfTab() {
               <label className={s.label}>Subtitle</label>
               <input className={s.input} value={p.subtitle} onChange={e => update(p.id, "subtitle", e.target.value)} />
             </div>
-            <div className="w-32">
-              <label className={s.label}>Category</label>
-              <select className={s.input} value={p.category} onChange={e => update(p.id, "category", e.target.value)}>
-                <option>STRUCTURE</option>
-                <option>MISC</option>
-                <option>BIM</option>
+            <div className="w-44">
+              <label className={s.label}>Group</label>
+              <select className={s.input} value={p.group} onChange={e => update(p.id, "group", e.target.value)}>
+                {GROUP_OPTIONS.map(g => <option key={g.value} value={g.value}>{g.label}</option>)}
               </select>
             </div>
           </div>
-          <div>
-            <label className={s.label}>File Path</label>
-            <input className={s.input} value={p.file} onChange={e => update(p.id, "file", e.target.value)} />
+          <div className={s.row}>
+            <div className="flex-1 min-w-[200px]">
+              <label className={s.label}>PDF File Path</label>
+              <input className={s.input} value={p.file} onChange={e => update(p.id, "file", e.target.value)} />
+            </div>
+            <div className="flex-1 min-w-[200px]">
+              <label className={s.label}>Preview Image Path</label>
+              <input className={s.input} value={p.preview} onChange={e => update(p.id, "preview", e.target.value)} />
+            </div>
           </div>
         </div>
       ))}
@@ -409,7 +336,7 @@ function PdfTab() {
 /* ═══════════════════════════════════════════════════════════
    DASHBOARD
 ═══════════════════════════════════════════════════════════ */
-const DASH_TABS = ["Navigation", "Testimonials", "Portfolio", "PDF Samples"] as const;
+const DASH_TABS = ["Navigation", "Testimonials", "Projects"] as const;
 type DashTab = typeof DASH_TABS[number];
 
 function Dashboard({ onLogout }: { onLogout: () => void }) {
@@ -447,8 +374,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
         {/* Content */}
         {active === "Navigation"   && <NavTab />}
         {active === "Testimonials" && <TestimonialsTab />}
-        {active === "Portfolio"    && <PortfolioTab />}
-        {active === "PDF Samples"  && <PdfTab />}
+        {active === "Projects"     && <PdfTab />}
       </div>
     </div>
   );

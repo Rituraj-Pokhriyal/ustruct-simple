@@ -9,20 +9,39 @@ interface Project {
   title: string;
   subtitle: string;
   category: string;
+  group: string;
   file: string;
-  preview?: string;
+  preview: string;
   active?: boolean;
 }
 
-const CATEGORY_COLOR: Record<string, string> = {
-  STRUCTURE: "#1E90FF",
-  MISC:      "#FF6B1A",
-  BIM:       "#FF8C42",
+const GROUP_ORDER = ["structural-frame", "stairs", "railings", "3d-views"] as const;
+
+const GROUP_INFO: Record<string, { label: string; color: string }> = {
+  "structural-frame": { label: "Structural Frame",       color: "#1E90FF" },
+  "stairs":           { label: "Stairs",                 color: "#FF6B1A" },
+  "railings":         { label: "Railings & Guardrails",  color: "#4FAEFF" },
+  "3d-views":          { label: "3D Views",                color: "#FF8C42" },
 };
 
-/* ── PDF Modal ───────────────────────────────────────────── */
+/* ── PDF File Icon ───────────────────────────────────────── */
+function PdfIcon({ color }: { color: string }) {
+  return (
+    <svg width="44" height="52" viewBox="0 0 44 52" fill="none">
+      <rect x="1" y="1" width="42" height="50" rx="4" fill="#111318" stroke={color} strokeWidth="1.5"/>
+      <path d="M27 1 L27 15 L43 15" stroke={color} strokeWidth="1.5" fill="none"/>
+      <path d="M27 1 L43 15" stroke={color} strokeWidth="1.5"/>
+      <line x1="9"  y1="24" x2="35" y2="24" stroke={color} strokeWidth="1.2" strokeOpacity="0.5"/>
+      <line x1="9"  y1="30" x2="35" y2="30" stroke={color} strokeWidth="1.2" strokeOpacity="0.5"/>
+      <line x1="9"  y1="36" x2="27" y2="36" stroke={color} strokeWidth="1.2" strokeOpacity="0.5"/>
+      <text x="22" y="48" fontSize="8" fill={color} textAnchor="middle" fontFamily="Arial" fontWeight="bold">PDF</text>
+    </svg>
+  );
+}
+
+/* ── Split-view Modal ────────────────────────────────────── */
 function PdfModal({
-  project, projects, activeIdx, onClose, onNavigate,
+  project, projects, activeIdx, onClose, onNavigate
 }: {
   project: Project;
   projects: Project[];
@@ -30,7 +49,7 @@ function PdfModal({
   onClose: () => void;
   onNavigate: (idx: number) => void;
 }) {
-  const color = CATEGORY_COLOR[project.category] ?? "#1E90FF";
+  const color = GROUP_INFO[project.group]?.color ?? "#1E90FF";
 
   return (
     <motion.div
@@ -44,7 +63,7 @@ function PdfModal({
       <div className="flex items-center justify-between px-6 py-4 border-b flex-shrink-0" style={{ borderColor: "#1E2433" }}>
         <div className="min-w-0 flex-1 pr-4">
           <span className="text-xs font-bold tracking-widest uppercase" style={{ color }}>
-            {project.category}
+            {GROUP_INFO[project.group]?.label ?? project.category}
           </span>
           <h3 className="font-bold text-lg text-text-primary leading-tight">{project.title}</h3>
           <p className="text-sm text-text-muted">{project.subtitle}</p>
@@ -60,26 +79,57 @@ function PdfModal({
         </button>
       </div>
 
-      {/* Embedded PDF */}
-      <div className="flex-1 overflow-hidden">
-        <embed src={project.file} type="application/pdf" className="w-full h-full" />
+      {/* Split view: PNG model view + PDF drawing */}
+      <div className="flex-1 overflow-hidden flex flex-col lg:flex-row">
+        {/* Model screenshot */}
+        <div
+          className="relative flex-shrink-0 lg:flex-1 lg:h-full"
+          style={{ height: 240, background: "#111318" }}
+        >
+          <Image
+            src={project.preview}
+            alt={`${project.title} — Tekla model view`}
+            fill
+            className="object-contain"
+            sizes="50vw"
+          />
+          <span
+            className="absolute top-3 left-3 text-xs font-bold tracking-widest px-2.5 py-1 rounded-full"
+            style={{ background: `${color}cc`, color: "#fff", backdropFilter: "blur(6px)" }}
+          >
+            MODEL VIEW
+          </span>
+        </div>
+
+        {/* Divider (desktop only) */}
+        <div className="hidden lg:block w-px flex-shrink-0" style={{ background: "#1E2433" }} />
+
+        {/* PDF drawing */}
+        <div className="relative flex-1 lg:h-full" style={{ background: "#0A0B0D" }}>
+          <span
+            className="absolute top-3 left-3 z-10 text-xs font-bold tracking-widest px-2.5 py-1 rounded-full"
+            style={{ background: "rgba(30,144,255,0.85)", color: "#fff", backdropFilter: "blur(6px)" }}
+          >
+            DRAWING
+          </span>
+          <embed src={project.file} type="application/pdf" className="w-full h-full" />
+        </div>
       </div>
 
-      {/* Bottom nav */}
+      {/* Bottom navigation */}
       <div className="flex items-center justify-between px-6 py-4 border-t flex-shrink-0" style={{ borderColor: "#1E2433" }}>
         <button
           onClick={() => activeIdx > 0 && onNavigate(activeIdx - 1)}
           disabled={activeIdx === 0}
-          className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all disabled:opacity-30"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-all disabled:opacity-30"
           style={{ background: "#1E2433", color: "#F0F4FF" }}
         >
           ← Prev
         </button>
 
-        {/* Thumbnail strip */}
         <div className="hidden md:flex items-center gap-2 overflow-x-auto max-w-xl px-2">
           {projects.map((p, i) => {
-            const c = CATEGORY_COLOR[p.category] ?? "#1E90FF";
+            const c = GROUP_INFO[p.group]?.color ?? "#1E90FF";
             return (
               <button
                 key={p.id}
@@ -100,7 +150,7 @@ function PdfModal({
         <button
           onClick={() => activeIdx < projects.length - 1 && onNavigate(activeIdx + 1)}
           disabled={activeIdx === projects.length - 1}
-          className="px-5 py-2.5 rounded-lg text-sm font-bold transition-all disabled:opacity-30"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-all disabled:opacity-30"
           style={{ background: "#1E2433", color: "#F0F4FF" }}
         >
           Next →
@@ -110,13 +160,45 @@ function PdfModal({
   );
 }
 
+/* ── Card ─────────────────────────────────────────────────── */
+function ProjectCard({ project, index, color, onOpen }: { project: Project; index: number; color: string; onOpen: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: (index % 4) * 0.05 }}
+      onClick={onOpen}
+      className="group card-glow rounded-xl p-6 flex flex-col cursor-pointer transition-all duration-300 hover:-translate-y-1"
+      style={{ background: "#181C24" }}
+    >
+      <div className="mb-5"><PdfIcon color={color} /></div>
+      <h3 className="font-bold text-base text-text-primary mb-1 leading-snug group-hover:text-steel-blue transition-colors">
+        {project.title}
+      </h3>
+      <p className="text-sm text-text-muted flex-1 leading-relaxed mb-5">{project.subtitle}</p>
+      <button
+        className="w-full py-2.5 rounded-lg text-sm font-bold transition-all group-hover:opacity-90"
+        style={{ background: color, color: "#fff" }}
+      >
+        View Drawing
+      </button>
+    </motion.div>
+  );
+}
+
 /* ── Main component ──────────────────────────────────────── */
 export function Projects({ projects }: { projects: Project[] }) {
+  // Build display order: grouped by GROUP_ORDER, preserving original relative order within each group
+  const ordered = GROUP_ORDER.flatMap((g) => projects.filter((p) => p.group === g));
+  const ungrouped = projects.filter((p) => !GROUP_ORDER.includes(p.group as typeof GROUP_ORDER[number]));
+  const displayList = [...ordered, ...ungrouped];
+
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
 
   const open = (idx: number) => {
-    if (typeof window !== "undefined" && window.innerWidth < 768) {
-      window.open(projects[idx].file, "_blank");
+    if (typeof window !== "undefined" && window.innerWidth < 480) {
+      window.open(displayList[idx].file, "_blank");
     } else {
       setActiveIdx(idx);
     }
@@ -125,85 +207,58 @@ export function Projects({ projects }: { projects: Project[] }) {
   return (
     <>
       <section className="py-16" style={{ background: "#0A0B0D" }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, i) => {
-              const color = CATEGORY_COLOR[project.category] ?? "#1E90FF";
-              return (
+        <div className="max-w-7xl mx-auto px-6 space-y-16">
+          {GROUP_ORDER.map((groupKey) => {
+            const items = projects.filter((p) => p.group === groupKey);
+            if (items.length === 0) return null;
+            const info = GROUP_INFO[groupKey];
+
+            return (
+              <div key={groupKey}>
+                {/* Section heading */}
                 <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 24 }}
+                  initial={{ opacity: 0, y: 14 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.06 }}
-                  onClick={() => open(i)}
-                  className="group card-glow rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1"
-                  style={{ background: "#181C24" }}
+                  transition={{ duration: 0.4 }}
+                  className="flex items-center gap-3 mb-6"
+                  style={{ borderLeft: `3px solid ${info.color}`, paddingLeft: 16 }}
                 >
-                  {/* Preview image */}
-                  <div className="relative h-52 overflow-hidden bg-surface">
-                    {project.preview ? (
-                      <Image
-                        src={project.preview}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        unoptimized
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center" style={{ background: `${color}10` }}>
-                        <svg width="48" height="56" viewBox="0 0 48 56" fill="none">
-                          <rect x="1" y="1" width="46" height="54" rx="4" stroke={color} strokeWidth="1.5"/>
-                          <path d="M30 1 L30 16 L47 16" stroke={color} strokeWidth="1.5" fill="none"/>
-                          <line x1="10" y1="26" x2="38" y2="26" stroke={color} strokeWidth="1.2" strokeOpacity="0.5"/>
-                          <line x1="10" y1="33" x2="38" y2="33" stroke={color} strokeWidth="1.2" strokeOpacity="0.5"/>
-                          <line x1="10" y1="40" x2="28" y2="40" stroke={color} strokeWidth="1.2" strokeOpacity="0.5"/>
-                        </svg>
-                      </div>
-                    )}
-                    {/* Category badge */}
-                    <span
-                      className="absolute top-3 left-3 text-xs font-bold tracking-widest px-2.5 py-1 rounded-full"
-                      style={{ background: `${color}dd`, color: "#fff", backdropFilter: "blur(4px)" }}
-                    >
-                      {project.category}
-                    </span>
-                    {/* Hover overlay */}
-                    <div
-                      className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{ background: "rgba(10,11,13,0.6)" }}
-                    >
-                      <span
-                        className="px-5 py-2.5 rounded-xl text-sm font-bold"
-                        style={{ background: color, color: "#fff" }}
-                      >
-                        View Drawing →
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Info */}
-                  <div className="p-5">
-                    <h3 className="font-bold text-base text-text-primary mb-1 group-hover:text-steel-blue transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-text-muted leading-relaxed">
-                      {project.subtitle}
-                    </p>
-                  </div>
+                  <h2 className="font-bold text-2xl text-text-primary">{info.label}</h2>
+                  <span
+                    className="text-xs font-bold px-2.5 py-1 rounded-full"
+                    style={{ background: `${info.color}18`, color: info.color, border: `1px solid ${info.color}30` }}
+                  >
+                    {items.length} {items.length === 1 ? "drawing" : "drawings"}
+                  </span>
                 </motion.div>
-              );
-            })}
-          </div>
+
+                {/* Cards */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                  {items.map((project) => {
+                    const globalIdx = displayList.findIndex((p) => p.id === project.id);
+                    return (
+                      <ProjectCard
+                        key={project.id}
+                        project={project}
+                        index={globalIdx}
+                        color={info.color}
+                        onOpen={() => open(globalIdx)}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
 
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-center text-sm text-text-muted mt-12"
+            className="text-center text-sm text-text-muted"
           >
-            All drawings shown are from real completed projects.
+            All drawings shown are from real completed projects. Deliverables in DXF, DWG, PDF and Tekla native formats.
           </motion.p>
         </div>
       </section>
@@ -212,8 +267,8 @@ export function Projects({ projects }: { projects: Project[] }) {
       <AnimatePresence>
         {activeIdx !== null && (
           <PdfModal
-            project={projects[activeIdx]}
-            projects={projects}
+            project={displayList[activeIdx]}
+            projects={displayList}
             activeIdx={activeIdx}
             onClose={() => setActiveIdx(null)}
             onNavigate={setActiveIdx}

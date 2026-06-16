@@ -4,6 +4,7 @@
     "title": "Structural Steel Frame",
     "subtitle": "Full structure plan with beams and columns",
     "category": "STRUCTURE",
+    "group": "structural-frame",
     "file": "/samples/structure/STRUCTURE_PLAN.pdf",
     "preview": "/portfolio/structure/MODEL_SNAP.png",
     "active": true
@@ -13,6 +14,7 @@
     "title": "Beam Details",
     "subtitle": "W-section beam shop drawings",
     "category": "STRUCTURE",
+    "group": "structural-frame",
     "file": "/samples/structure/BEAMS.pdf",
     "preview": "/portfolio/structure/MODEL_SNAP1.png",
     "active": true
@@ -22,6 +24,7 @@
     "title": "Bracing Details",
     "subtitle": "Lateral bracing connection details",
     "category": "STRUCTURE",
+    "group": "structural-frame",
     "file": "/samples/structure/BRACINGS.pdf",
     "preview": "/portfolio/structure/MODEL_SNAP2.png",
     "active": true
@@ -31,6 +34,7 @@
     "title": "Frame Package",
     "subtitle": "Complete frame erection drawings",
     "category": "STRUCTURE",
+    "group": "structural-frame",
     "file": "/samples/structure/FRAME.pdf",
     "preview": "/portfolio/structure/MODEL_SNAP3.png",
     "active": true
@@ -40,6 +44,7 @@
     "title": "Stair Erection Plan",
     "subtitle": "Stair assembly and erection sequence",
     "category": "MISC",
+    "group": "stairs",
     "file": "/samples/misc/STAIR ERECTION.pdf",
     "preview": "/portfolio/misc/MISC.png",
     "active": true
@@ -49,6 +54,7 @@
     "title": "Stair Plan",
     "subtitle": "Stair plan view with dimensions",
     "category": "MISC",
+    "group": "stairs",
     "file": "/samples/misc/STAIR PLAN.pdf",
     "preview": "/portfolio/misc/MISC1.png",
     "active": true
@@ -58,6 +64,7 @@
     "title": "Stair Section",
     "subtitle": "Stair section detail drawings",
     "category": "MISC",
+    "group": "stairs",
     "file": "/samples/misc/STAIR SECTION.pdf",
     "preview": "/portfolio/misc/MISC2.png",
     "active": true
@@ -67,6 +74,7 @@
     "title": "Stringers Detail",
     "subtitle": "Stair stringer shop drawings",
     "category": "MISC",
+    "group": "stairs",
     "file": "/samples/misc/STRINGERS.pdf",
     "preview": "/portfolio/misc/MISC3.png",
     "active": true
@@ -76,6 +84,7 @@
     "title": "Guardrail Detail",
     "subtitle": "Pipe guardrail and post details",
     "category": "MISC",
+    "group": "railings",
     "file": "/samples/misc/GUARDRAIL.pdf",
     "preview": "/portfolio/misc/MISC4.png",
     "active": true
@@ -85,7 +94,18 @@
     "title": "Isometric View",
     "subtitle": "3D isometric model screenshot",
     "category": "MISC",
+    "group": "3d-views",
     "file": "/samples/misc/ISOMETRIC_VIEW.pdf",
+    "preview": "/portfolio/misc/MISC5.png",
+    "active": true
+  },
+  {
+    "id": 11,
+    "title": "Isometric Detail View",
+    "subtitle": "Alternate isometric model perspective",
+    "category": "MISC",
+    "group": "3d-views",
+    "file": "/samples/misc/ISO_VIEW.pdf",
     "preview": "/portfolio/misc/MISC5.png",
     "active": true
   }

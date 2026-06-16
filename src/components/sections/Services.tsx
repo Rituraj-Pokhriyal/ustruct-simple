@@ -1,20 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { SERVICES } from "@/lib/constants";
-
-/* ── Local images per service ───────────────────────────── */
-const SERVICE_IMAGES: Record<number, string> = {
-  1: "/images/service-1.jpg",
-  2: "/images/service-2.jpg",
-  3: "/images/service-3.jpg",
-  4: "/images/service-4.jpg",
-  5: "/images/service-5.jpg",
-  6: "/images/service-6.jpg",
-  7: "/images/service-7.jpg",
-  8: "/images/service-8.jpg",
-};
 
 const CATEGORY_COLOR: Record<string, string> = {
   STRUCTURAL: "#1E90FF",
@@ -35,68 +22,31 @@ const USE_CASES: Record<number, string[]> = {
   8: ["MEP coordination", "Large-scale projects", "IFC workflows", "Data-rich delivery"],
 };
 
-/* ── Image panel ─────────────────────────────────────────── */
-function ServiceVisual({ service, flip }: { service: typeof SERVICES[0]; flip: boolean }) {
-  const color = CATEGORY_COLOR[service.category] ?? "#1E90FF";
-  const imgSrc = SERVICE_IMAGES[service.id];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: flip ? -40 : 40 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative rounded-2xl overflow-hidden"
-      style={{ minHeight: 300 }}
-    >
-      {/* Photo */}
-      <Image
-        src={imgSrc}
-        alt={service.title}
-        fill
-        className="object-cover"
-        sizes="(max-width: 1024px) 100vw, 50vw"
-        unoptimized={false}
-      />
-
-      {/* Dark overlay */}
-      <div
-        className="absolute inset-0"
-        style={{ background: "linear-gradient(160deg, rgba(10,11,13,0.25) 0%, rgba(10,11,13,0.55) 100%)" }}
-      />
-
-      {/* Category badge */}
-      <span
-        className="absolute top-4 left-4 text-xs font-bold tracking-widest px-3 py-1.5 rounded-full"
-        style={{
-          background: `${color}cc`,
-          color: "#fff",
-          backdropFilter: "blur(6px)",
-          border: `1px solid ${color}`,
-        }}
-      >
-        {service.category}
-      </span>
-    </motion.div>
-  );
-}
-
-/* ── Content panel ──────────────────────────────────────── */
-function ServiceContent({ service, flip }: { service: typeof SERVICES[0]; flip: boolean }) {
+/* ── Service card ───────────────────────────────────────── */
+function ServiceCard({ service, index }: { service: typeof SERVICES[0]; index: number }) {
   const color = CATEGORY_COLOR[service.category] ?? "#1E90FF";
   const useCases = USE_CASES[service.id] ?? [];
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: flip ? 40 : -40 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="flex flex-col justify-center"
+      transition={{ duration: 0.5, delay: (index % 2) * 0.08 }}
+      className="card-glow rounded-2xl p-7 flex flex-col"
+      style={{ background: "#181C24" }}
     >
+      {/* Category badge */}
+      <span
+        className="self-start text-xs font-bold tracking-widest px-3 py-1 rounded-full mb-4"
+        style={{ background: `${color}18`, color, border: `1px solid ${color}30` }}
+      >
+        {service.category}
+      </span>
+
       {/* Title */}
       <h3
-        className="font-bold text-text-primary leading-tight mb-4"
+        className="font-bold text-text-primary leading-tight mb-3"
         style={{ fontSize: "clamp(1.2rem, 2vw, 1.5rem)", borderLeft: `3px solid ${color}`, paddingLeft: 14 }}
       >
         {service.title}
@@ -127,7 +77,7 @@ function ServiceContent({ service, flip }: { service: typeof SERVICES[0]; flip: 
 
       {/* Common use cases */}
       {useCases.length > 0 && (
-        <div>
+        <div className="mt-auto">
           <p className="text-sm font-bold text-text-muted uppercase tracking-widest mb-2">
             Common Use Cases
           </p>
@@ -153,21 +103,10 @@ export function Services() {
   return (
     <section className="py-16" style={{ background: "#0A0B0D" }}>
       <div className="max-w-6xl mx-auto px-6">
-        <div className="space-y-20">
-          {SERVICES.map((service, i) => {
-            const flip = i % 2 === 1;
-            return (
-              <div key={service.id} className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-                {/* Content always first on mobile; on desktop flip swaps order */}
-                <div className={flip ? "lg:order-2" : ""}>
-                  <ServiceContent service={service} flip={flip} />
-                </div>
-                <div className={flip ? "lg:order-1" : ""}>
-                  <ServiceVisual service={service} flip={flip} />
-                </div>
-              </div>
-            );
-          })}
+        <div className="grid lg:grid-cols-2 gap-8">
+          {SERVICES.map((service, i) => (
+            <ServiceCard key={service.id} service={service} index={i} />
+          ))}
         </div>
 
         {/* Bottom CTA */}
@@ -176,7 +115,7 @@ export function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-24 rounded-2xl p-10 text-center"
+          className="mt-16 rounded-2xl p-10 text-center"
           style={{ background: "#181C24", border: "1px solid #1E2433" }}
         >
           <h3 className="font-bold text-2xl text-text-primary mb-3">Need a custom solution?</h3>

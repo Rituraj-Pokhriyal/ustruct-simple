@@ -15,7 +15,7 @@ export default function ProjectsPage() {
       <PageBanner
         label="— Our Work"
         title="Projects"
-        subtitle="Real deliverables from completed projects — click any drawing to preview or download."
+        subtitle="Real deliverables from completed projects, grouped by category — click any drawing to preview the model and shop drawing side by side."
       />
       <Projects projects={projects} />
     </>
