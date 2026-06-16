@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
@@ -51,6 +51,38 @@ function PdfModal({
 }) {
   const color = GROUP_INFO[project.group]?.color ?? "#1E90FF";
 
+  // Resizable split — desktop only.
+  // Uses Pointer Events + setPointerCapture (not window mousemove/mouseup) because
+  // the PDF <embed> is a native plugin that can swallow mouseup, leaving a window
+  // listener's "dragging" flag stuck true forever. Pointer capture keeps delivering
+  // events to the handle element itself regardless of what's under the cursor.
+  const [splitPercent, setSplitPercent] = useState(58); // image pane gets more room by default
+  const containerRef = useRef<HTMLDivElement>(null);
+  const dragging = useRef(false);
+
+  const onPointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    dragging.current = true;
+    e.currentTarget.setPointerCapture(e.pointerId);
+    document.body.style.cursor = "col-resize";
+    document.body.style.userSelect = "none";
+  }, []);
+
+  const onPointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    if (!dragging.current || !containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const percent = ((e.clientX - rect.left) / rect.width) * 100;
+    setSplitPercent(Math.min(78, Math.max(22, percent)));
+  }, []);
+
+  const endDrag = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    dragging.current = false;
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+    document.body.style.cursor = "";
+    document.body.style.userSelect = "";
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -79,19 +111,17 @@ function PdfModal({
         </button>
       </div>
 
-      {/* Split view: PNG model view + PDF drawing */}
-      <div className="flex-1 overflow-hidden flex flex-col lg:flex-row">
-        {/* Model screenshot */}
-        <div
-          className="relative flex-shrink-0 lg:flex-1 lg:h-full"
-          style={{ height: 240, background: "#111318" }}
-        >
+      {/* Desktop split view — resizable */}
+      <div ref={containerRef} className="hidden lg:flex flex-1 overflow-hidden">
+        {/* Model screenshot — bigger by default, draggable to resize */}
+        <div className="relative h-full" style={{ width: `${splitPercent}%`, background: "#111318" }}>
           <Image
             src={project.preview}
             alt={`${project.title} — Tekla model view`}
             fill
             className="object-contain"
-            sizes="50vw"
+            sizes="80vw"
+            quality={95}
           />
           <span
             className="absolute top-3 left-3 text-xs font-bold tracking-widest px-2.5 py-1 rounded-full"
@@ -101,11 +131,58 @@ function PdfModal({
           </span>
         </div>
 
-        {/* Divider (desktop only) */}
-        <div className="hidden lg:block w-px flex-shrink-0" style={{ background: "#1E2433" }} />
+        {/* Drag handle */}
+        <div
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+          className="relative flex-shrink-0 group"
+          style={{ width: 14, cursor: "col-resize", background: "transparent", touchAction: "none" }}
+          title="Drag to resize"
+        >
+          <div
+            className="absolute inset-y-0 left-1/2 -translate-x-1/2 transition-colors"
+            style={{ width: 2, background: "#1E2433" }}
+          />
+          <div
+            className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-3.5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+          >
+            <div className="w-1 h-10 rounded-full" style={{ background: color }} />
+          </div>
+        </div>
 
         {/* PDF drawing */}
-        <div className="relative flex-1 lg:h-full" style={{ background: "#0A0B0D" }}>
+        <div className="relative h-full" style={{ width: `${100 - splitPercent}%`, background: "#0A0B0D" }}>
+          <span
+            className="absolute top-3 left-3 z-10 text-xs font-bold tracking-widest px-2.5 py-1 rounded-full"
+            style={{ background: "rgba(30,144,255,0.85)", color: "#fff", backdropFilter: "blur(6px)" }}
+          >
+            DRAWING
+          </span>
+          <embed src={project.file} type="application/pdf" className="w-full h-full" />
+        </div>
+      </div>
+
+      {/* Mobile stacked view */}
+      <div className="flex lg:hidden flex-col flex-1 overflow-hidden">
+        <div className="relative flex-shrink-0" style={{ height: 320, background: "#111318" }}>
+          <Image
+            src={project.preview}
+            alt={`${project.title} — Tekla model view`}
+            fill
+            className="object-contain"
+            sizes="100vw"
+            quality={95}
+          />
+          <span
+            className="absolute top-3 left-3 text-xs font-bold tracking-widest px-2.5 py-1 rounded-full"
+            style={{ background: `${color}cc`, color: "#fff", backdropFilter: "blur(6px)" }}
+          >
+            MODEL VIEW
+          </span>
+        </div>
+        <div className="relative flex-1" style={{ background: "#0A0B0D" }}>
           <span
             className="absolute top-3 left-3 z-10 text-xs font-bold tracking-widest px-2.5 py-1 rounded-full"
             style={{ background: "rgba(30,144,255,0.85)", color: "#fff", backdropFilter: "blur(6px)" }}

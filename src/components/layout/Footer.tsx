@@ -10,7 +10,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="mb-4">
-              <Image src="/logo.png" alt={COMPANY.name} width={120} height={40} style={{ height: 40, width: "auto", objectFit: "contain" }} />
+              <Image src="/logo.png" alt={COMPANY.name} width={48} height={48} style={{ height: 48, width: 48, objectFit: "contain" }} />
             </div>
             <p className="text-base text-text-muted leading-relaxed max-w-xs">
               Professional steel detailing services — precision shop drawings, GA drawings, and BIM coordination delivered by industry experts.

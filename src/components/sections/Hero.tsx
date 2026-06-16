@@ -21,9 +21,9 @@ export function Hero() {
         <Image
           src="/logo.png"
           alt=""
-          width={1100}
-          height={380}
-          style={{ objectFit: "contain", opacity: 0.09, width: "85%", maxWidth: 1100, height: "auto" }}
+          width={600}
+          height={600}
+          style={{ objectFit: "contain", opacity: 0.09, width: "min(60%, 600px)", height: "auto" }}
           aria-hidden="true"
           priority
         />

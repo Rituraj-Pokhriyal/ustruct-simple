@@ -55,9 +55,9 @@ export function Nav({ visibleTabs }: NavProps) {
             <Image
               src="/logo.png"
               alt={COMPANY.name}
-              width={130}
-              height={40}
-              style={{ height: 40, width: "auto", objectFit: "contain" }}
+              width={48}
+              height={48}
+              style={{ height: 48, width: 48, objectFit: "contain" }}
               priority
             />
           </Link>
